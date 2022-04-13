@@ -1,0 +1,15 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="http-servlets-starter">
+    <output-path>$PROJECT_DIR$/out/artifacts/http_servlets_starter</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="http-servlets-starter" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="servlet-api" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
