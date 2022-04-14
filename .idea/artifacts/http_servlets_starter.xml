@@ -8,6 +8,7 @@
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="servlet-api" />
+          <element id="file-copy" path="$PROJECT_DIR$/lib/postgresql-42.3.3.jar" />
         </element>
       </element>
     </root>
