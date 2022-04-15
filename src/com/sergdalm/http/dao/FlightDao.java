@@ -3,6 +3,9 @@ package com.sergdalm.http.dao;
 import com.sergdalm.http.entity.Flight;
 import com.sergdalm.http.entity.FlightStatus;
 import com.sergdalm.http.util.ConnectionManager;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -19,6 +22,10 @@ public class FlightDao implements Dao<Long, Flight> {
             """;
 
     private FlightDao() {
+    }
+
+    public static FlightDao getInstance() {
+        return INSTANCE;
     }
 
     @Override
@@ -55,10 +62,6 @@ public class FlightDao implements Dao<Long, Flight> {
     @Override
     public Flight save(Flight entity) {
         return null;
-    }
-
-    public static FlightDao getInstance() {
-        return INSTANCE;
     }
 
     private Flight buildFlight(ResultSet resultSet) throws SQLException {

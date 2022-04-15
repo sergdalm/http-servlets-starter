@@ -2,6 +2,7 @@ package com.sergdalm.http.dao;
 
 import com.sergdalm.http.entity.Ticket;
 import com.sergdalm.http.util.ConnectionManager;
+import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
 import java.sql.ResultSet;
@@ -24,6 +25,9 @@ public class TicketDao implements Dao<Long, Ticket> {
             FROM ticket
             WHERE flight_id = ?
             """;
+
+    private TicketDao() {
+    }
 
     @Override
     public List<Ticket> findAll() {
