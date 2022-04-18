@@ -1,14 +1,12 @@
 package com.sergdalm.http.servlet;
 
 import com.sergdalm.http.dto.UserDto;
-import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-import java.io.IOException;
 
 @WebServlet("/sessions")
 public class SessionServlet extends HttpServlet {
