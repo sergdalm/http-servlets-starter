@@ -3,6 +3,13 @@
     <output-path>$PROJECT_DIR$/out/artifacts/servlets_starter</output-path>
     <root id="archive" name="servlets-starter.war">
       <element id="artifact" artifact-name="http-servlets-starter" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="lib">
+          <element id="file-copy" path="$PROJECT_DIR$/../../jar files/postgresql-42.3.3.jar" />
+          <element id="file-copy" path="$PROJECT_DIR$/../../jar files/lombok.jar" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="http-servlets-starter/web/Web" />
     </root>
   </artifact>
 </component>
