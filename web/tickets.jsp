@@ -7,7 +7,9 @@
   Time: 15:49
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%--<%@ taglib prefix="c" uri="http://mycompany.com %>--%>
+<%--<%@ include file="index.html" %>--%>
 <html>
 <head>
     <title>Title</title>
@@ -15,7 +17,6 @@
 <body>
     <h1>Купленные билеты на самолёт</h1>
     <ul>
-    </ul>
     <%
         Long flightId = Long.valueOf(request.getParameter("flightId"));
         List<TicketDto> tickets = TicketService.getInstance().findByFlightId(flightId);
@@ -23,6 +24,7 @@
             out.write(String.format("<li>%s</li>", ticket.getSeatNo()));
         }
     %>
+    </ul>
 </body>
 </html>
 
