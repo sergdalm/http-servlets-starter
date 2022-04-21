@@ -9,27 +9,22 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--<%@ include file="index.html" %>--%>
 <html>
 <head>
-    <title>Title</title>
+    <title>Купленные билеты</title>
 </head>
 <body>
-    <h1>Купленные билеты на самолёт</h1>
-    <ul>
-    <%
-        Long flightId = Long.valueOf(request.getParameter("flightId"));
-        List<TicketDto> tickets = TicketService.getInstance().findByFlightId(flightId);
-        for(TicketDto ticket: tickets) {
-            out.write(String.format("<li>%s</li>", ticket.getSeatNo()));
-        }
-    %>
-    </ul>
+    <c:if test="${not empty requestScope.tickets}">
+        <h1>Купленные билеты</h1>
+        <ul>
+            <c:forEach var="ticket" items="${requestScope.tickets}">
+                <li>${fn:toLowerCase(ticket.seatNo)}</li>
+            </c:forEach>
+        </ul>
+    </c:if>
 </body>
+
 </html>
 
-<%!
-    public void jspInit() {
-        System.out.println("Hello world!");
-    }
-%>
