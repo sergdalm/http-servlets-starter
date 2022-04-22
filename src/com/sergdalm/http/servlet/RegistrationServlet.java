@@ -1,5 +1,8 @@
 package com.sergdalm.http.servlet;
 
+import com.sergdalm.http.dto.CreateUserDto;
+import com.sergdalm.http.exception.ValidationException;
+import com.sergdalm.http.service.UserService;
 import com.sergdalm.http.util.JspHelper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,6 +15,7 @@ import java.util.List;
 
 @WebServlet("/registration")
 public class RegistrationServlet extends HttpServlet {
+    private final UserService userService = UserService.getInstance();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("roles", List.of("USER", "ADMIN"));
@@ -22,7 +26,23 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String name = req.getParameter("name");
+        CreateUserDto userDto = CreateUserDto.builder()
+                // Название параметра берется из поля name в теге input
+                .name(req.getParameter("name"))
+                .birthday(req.getParameter("birthday"))
+                .email(req.getParameter("email"))
+                .password(req.getParameter("password"))
+                .role(req.getParameter("role"))
+                .gender(req.getParameter("gender"))
+                .build();
+
+        try {
+            userService.create(userDto);
+            resp.sendRedirect("/login");
+        } catch (ValidationException exp) {
+            req.setAttribute("errors", exp.getErrors());
+            doGet(req, resp);
+        }
 
     }
 }

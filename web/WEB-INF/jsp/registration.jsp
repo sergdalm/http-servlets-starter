@@ -12,12 +12,17 @@
     <title>Регистрация</title>
 </head>
 <body>
-    <form action="/registration" method="post">
+    <form action="/registration" method="post" enctype="multipart/form-data">
         <label for="name"> Name:
+<%--            атрибут id используется для JS, для добавления стилей и при тестировании--%>
+<%--            на сервере мы этот атрибут никак использовать не можем--%>
             <input type="text" name="name" id="name">
         </label><br>
         <label for="birthday"> Birthday:
             <input type="date" name="birthday" id="birthday">
+        </label><br>
+        <label for="imageId"> Image:
+            <input type="file" name="image" id="imageId">
         </label><br>
         <label for="email"> Email:
             <input type="text" name="email" id="email">
@@ -36,6 +41,17 @@
             <br>
         </c:forEach>
         <button type="submit">Send</button>
+
+        <c:if test="${not empty requestScope.errors}">
+            <div style="color: red">
+
+                <c:forEach var="error" items="${requestScope.errors}">
+                    <span>${error.message}</span>
+                    <br>
+                </c:forEach>
+            </div>
+        </c:if>
+
     </form>
 
 </body>
