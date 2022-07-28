@@ -5,17 +5,21 @@ import com.sergdalm.http.exception.ValidationException;
 import com.sergdalm.http.service.UserService;
 import com.sergdalm.http.util.JspHelper;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.Part;
 
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet("/registration")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024)
+@WebServlet(value = "/registration", name = "RegistrationServlet")
 public class RegistrationServlet extends HttpServlet {
     private final UserService userService = UserService.getInstance();
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("roles", List.of("USER", "ADMIN"));
@@ -26,9 +30,12 @@ public class RegistrationServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Part image = req.getPart("image");
+
         CreateUserDto userDto = CreateUserDto.builder()
                 // Название параметра берется из поля name в теге input
                 .name(req.getParameter("name"))
+                .image(image)
                 .birthday(req.getParameter("birthday"))
                 .email(req.getParameter("email"))
                 .password(req.getParameter("password"))

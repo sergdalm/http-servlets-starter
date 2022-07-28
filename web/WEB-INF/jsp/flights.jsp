@@ -13,12 +13,13 @@
     <title>Список перелётов</title>
 </head>
 <body>
-    <h1>Список перелётов</h1>
-    <ul>
-        <c:forEach var="flight" items="${requestScope.flights}">
-            <li><a href="${pageContext.request.contextPath}/tickets?flightId=${flight.id}"> ${flight.description}</a></li>
-        </c:forEach>
-    </ul>
+<%@include file="header.jsp" %>
+<h1>Список перелётов</h1>
+<ul>
+    <c:forEach var="flight" items="${requestScope.flights}">
+        <li><a href="${pageContext.request.contextPath}/tickets?flightId=${flight.id}"> ${flight.description}</a></li>
+    </c:forEach>
+</ul>
 <%--printWriter.write("<ul>");--%>
 <%--    flightService.findAll().forEach(flightDto -> printWriter.write(--%>
 <%--    """--%>

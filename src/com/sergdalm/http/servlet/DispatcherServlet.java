@@ -13,12 +13,14 @@ import java.nio.charset.StandardCharsets;
 @WebServlet("/dispatcher")
 public class DispatcherServlet extends HttpServlet {
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
 //        resp.setContentType("text/html");
 //        resp.setCharacterEncoding(StandardCharsets.UTF_8.name());
-//
+
+//        req.setAttribute("1", "234");
 //        req.getRequestDispatcher("/flights")
-//                .include(req, resp);
+//                .forward(req, resp);
+//
 //
 //        var writer = resp.getWriter();
 //        writer.write("Hello 2");
